@@ -30,6 +30,10 @@ app.get('/typeofproducts', (req, res) => {
     res.render('typeofprods');
 });
 
+app.get('/selleds', (req, res) => {
+    res.render('selleds');
+});
+
 app.get('/login', (req, res) => {
     res.render('login');
 });
@@ -38,7 +42,6 @@ app.get('/signin', (req, res) => {
     res.render('signin');
 });
 
-// 
 app.listen(port, (err) => {
     if (err)
         console.log(err);
