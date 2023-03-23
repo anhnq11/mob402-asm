@@ -107,6 +107,7 @@ app.get('/products', (req, res) => {
 
 app.post('/products', (req, res) => {
     prod = req.body;
+    readCurUser();
     prod.author = curUser.fullname;
     listProducts.push(prod)
     writelistProducts();
