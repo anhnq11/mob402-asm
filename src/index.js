@@ -10,7 +10,7 @@ const myModule = require('./module');
 
 let user;
 let listUsers;
-let listProducts = [];
+let listProducts;
 let curUser;
 
 const writelistUsers = function () {
@@ -37,7 +37,20 @@ const readlistProducts = function () {
 
 readlistProducts();
 
+// Ghi thông tin người dùng hiện tại vào file JSON
+const writeCurUser = function () {
+    let data = JSON.stringify(curUser);
+    fs.writeFileSync('json/curUser.json', data);
+}
+
+const readCurUser = function () {
+    let data = fs.readFileSync('json/curUser.json');
+    curUser = JSON.parse(data);
+}
+
 const port = 8080;
+
+// Cấu hình router
 const routes = require('./routes');
 const { use } = require('./routes/main');
 
@@ -95,7 +108,6 @@ app.get('/products', (req, res) => {
 app.post('/products', (req, res) => {
     prod = req.body;
     prod.author = curUser.fullname;
-    console.log(curUser);
     listProducts.push(prod)
     writelistProducts();
     res.redirect('/products');
@@ -114,6 +126,7 @@ app.get('/selleds', (req, res) => {
 });
 
 app.get('/userInfo', (req, res) => {
+    readCurUser();
     res.render('userInfo', {
         showHeader: true,
         curUser
@@ -122,6 +135,7 @@ app.get('/userInfo', (req, res) => {
 
 // Đăng nhập hệ thống
 app.get('/login', (req, res) => {
+    
     res.render('login', {
         showHeader: false,
     });
@@ -134,6 +148,7 @@ app.post('/login', (req, res) => {
         if (listUsers[i].username == user.username && listUsers[i].password == user.password) {
             check = true;
             curUser = listUsers[i];
+            writeCurUser();
         }
     }
     listUsers.forEach(element => {
