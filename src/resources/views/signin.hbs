@@ -6,35 +6,45 @@
                     class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
+                <form method="post" action="/signin">
                     <div class="divider d-flex align-items-center my-4">
                         <h3 class="text-center fw-bold mx-3 mb-0">Đăng ký tài khoản</h3>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="text" class="form-control" id="fullname" placeholder="name@example.com"
+                            name="fullname" required>
                         <label for="floatingInput">FullName</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="text" class="form-control" id="username" placeholder="name@example.com"
+                            name="username" required>
                         <label for="floatingInput">UserName</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
+                            required>
                         <label for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="name@example.com"
+                            name="password" required>
                         <label for="floatingPassword">Password</label>
                     </div>
-                    <div class="form-floating mb-2">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="repassword" placeholder="name@example.com"
+                            name="repass" required>
                         <label for="floatingPassword">Repeat Password</label>
                     </div>
-
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="acctype" placeholder="name@example.com" value="User"
+                            name="acctype" readonly>
+                        <label for="acctype">Loại tài khoản</label>
+                    </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="form-check mb-2">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <input class="form-check-input me-2" type="checkbox" name="checkbox" value="checked"
+                                id="checkbox" required />
                             <label class="form-check-label" for="form2Example3">
                                 I have read and agree to the terms
                             </label>
@@ -42,12 +52,13 @@
                     </div>
 
                     <div class="text-center text-lg-start">
-                        <button type="button" class="btn btn-primary btn-lg fw-bold"
+                        <button type="submit" class="btn btn-primary btn-lg fw-bold"
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Signin</button>
-                        <p class="small fw-bold mt-2">Have an account? <a href="/login"
-                                class="link-danger">Login</a></p>
                     </div>
                 </form>
+                <div class="text-center text-lg-start">
+                    <p class="small fw-bold mt-2">Have an account? <a href="/login" class="link-danger">Login</a></p>
+                </div>
             </div>
         </div>
     </div>

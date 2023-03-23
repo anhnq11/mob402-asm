@@ -12,39 +12,41 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" action="/accounts">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="FullName">
-                                <label for="floatingInput">FullName</label>
+                                <input type="text" class="form-control" id="fullname" placeholder="FullName"
+                                    name="fullname" required >
+                                <label for="fullname">FullName</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="UserName">
-                                <label for="floatingInput">UserName</label>
+                                <input type="text" class="form-control" id="username" placeholder="UserName"
+                                    name="username" required >
+                                <label for="username">UserName</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput"
+                                <input type="email" class="form-control" id="email" name="email"
                                     placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
+                                <label for="email" required >Email address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword"
+                                <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Password">
-                                <label for="floatingPassword">Password</label>
+                                <label for="password" required >Password</label>
                             </div>
                             <div class="form-floating">
-                                <select class="form-select" id="floatingSelect"
+                                <select class="form-select" id="floatingSelect" name="acctype"
                                     aria-label="Floating label select example">
-                                    <option selected>Loại tài khoản</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">User</option>
+                                    <option selected >Loại tài khoản</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
                                 </select>
                                 <label for="floatingSelect">Loại tài khoản</label>
                             </div>
+                            <div class="modal-footer mt-3">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -74,61 +76,28 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each listUser}}
                 <tr>
                     <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Quoc Anh</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">anhnq@fpt.edu.com</td>
-                    <td class="text-center align-middle">Admin</td>
+                    <td class="text-center align-middle">{{fullname}}</td>
+                    <td class="text-center align-middle">{{username}}</td>
+                    <td class="text-center align-middle">{{email}}</td>
+                    <td class="text-center align-middle">{{acctype}}</td>
+                    {{!-- <td class="text-center align-middle">
+                        {{#if "acctype === '1'"}}
+                            Admin
+                            {{else}}
+                            User
+                        {{/if}}
+                    </td> --}}
                     <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary">Sửa</button>
-                        <button type="button" class="btn btn-danger">Xóa</button>
+                        <button type="button" class="btn btn-primary my-1">Sửa</button>
+                        <button type="button" class="btn btn-danger my-1">Xóa</button>
                     </td>
                 </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Quoc Anh</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">anhnq@fpt.edu.com</td>
-                    <td class="text-center align-middle">Admin</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary">Sửa</button>
-                        <button type="button" class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Quoc Anh</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">anhnq@fpt.edu.com</td>
-                    <td class="text-center align-middle">Admin</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary">Sửa</button>
-                        <button type="button" class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Quoc Anh</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">anhnq@fpt.edu.com</td>
-                    <td class="text-center align-middle">Admin</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary">Sửa</button>
-                        <button type="button" class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Quoc Anh</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">anhnq@fpt.edu.com</td>
-                    <td class="text-center align-middle">Admin</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary">Sửa</button>
-                        <button type="button" class="btn btn-danger">Xóa</button>
-                    </td>
-                </tr>
+                {{else}}
+                <p>No employees to display</p>
+                {{/each}}
             </tbody>
         </table>
         <nav aria-label="Page navigation example">

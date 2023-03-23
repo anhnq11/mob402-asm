@@ -1,0 +1,33 @@
+[
+    {
+        "fullname": "Nguyễn Quốc Anh ",
+        "username": "anhnq",
+        "email": "anhnq@gmail.com",
+        "password": "123",
+        "repass": "123",
+        "acctype": "Admin"
+    },
+    {
+        "fullname": "Nguyễn Văn Nam ",
+        "username": "namnv",
+        "email": "namnv@gmail.com",
+        "password": "123",
+        "repass": "123",
+        "acctype": "User"
+    },
+    {
+        "fullname": "Nguyễn Hoa ",
+        "username": "huynv",
+        "email": "huynv@gmail.com",
+        "password": "123",
+        "repass": "123",
+        "acctype": "Admin"
+    },
+    {
+        "fullname": "Cao Cường",
+        "username": "caocuong",
+        "email": "caocuong@gmail.com",
+        "password": "123",
+        "acctype": "User"
+    }
+]

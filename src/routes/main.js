@@ -8,7 +8,8 @@ routes.use('/selleds', controllers.selled);
 routes.use('/typeofprods', controllers.typeofprod);
 routes.use('/login', controllers.login);
 routes.use('/signin', controllers.signin);
-routes.use('/accounts', controllers.accounts);
+routes.get('/accounts', controllers.accounts);
+routes.post('/accounts', controllers.formAddUser);
 routes.use('/', controllers.index);
 
 
