@@ -12,38 +12,38 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" action="/products">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="FullName">
+                                <input type="text" class="form-control" id="tensp" name="tensp" placeholder="FullName">
                                 <label for="floatingInput">Tên sản phẩm</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="floatingInput" placeholder="UserName">
+                                <input type="number" class="form-control" id="giaban" name="giaban" placeholder="UserName">
                                 <label for="floatingInput">Giá bán</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <select class="form-select" id="floatingSelect"
+                                <select class="form-select" id="lsp" name="lsp"
                                     aria-label="Floating label select example">
                                     <option selected>Loại sản phẩm</option>
-                                    <option value="1">Loại sản phẩm 1</option>
-                                    <option value="2">Loại sản phẩm 2</option>
+                                    <option value="LSP1">Loại sản phẩm 1</option>
+                                    <option value="LSP2">Loại sản phẩm 2</option>
                                 </select>
                                 <label for="floatingSelect">Loại sản phẩm</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                <textarea class="form-control" placeholder="Leave a comment here" id="motasp" name="motasp"
                                     style="height: 100px"></textarea>
                                 <label for="floatingTextarea2">Mô tả</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="floatingInput" placeholder="UserName">
+                                <input type="number" class="form-control" id="soluong" name="soluong" placeholder="UserName">
                                 <label for="floatingInput">Số lượng</label>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Thêm</button>
                     </div>
                 </div>
             </div>
@@ -77,150 +77,25 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each listProducts}}
                 <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
+                    <th class="text-center align-middle" scope="row">{{sum @index 1}}</th>
+                    <td class="text-center align-middle">{{tensp}}</td>
                     <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
+                    <td class="text-center align-middle">{{giaban}} VNĐ</td>
+                    <td class="text-center align-middle">{{lsp}}</td>
+                    <td class=" align-middle">{{motasp}}</td>
+                    <td class="text-center align-middle">{{author}}</td>
+                    <td class="text-center align-middle">{{soluong}}</td>
                     <td class="text-center align-middle">0</td>
                     <td class="text-center align-middle">
                         <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
                         <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
                     </td>
                 </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
-                    <td class="text-center align-middle">Sản phẩm 1</td>
-                    <td class="text-center align-middle">SP 1</td>
-                    <td class="text-center align-middle">50.000 VNĐ</td>
-                    <td class="text-center align-middle">LSP 1</td>
-                    <td class=" align-middle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint rerum
-                        minus nobis ullam, tenetur rem saepe iusto magni!</td>
-                    <td class="text-center align-middle">Anhnq</td>
-                    <td class="text-center align-middle">50</td>
-                    <td class="text-center align-middle">0</td>
-                    <td class="text-center align-middle">
-                        <button type="button" class="btn btn-primary mx-1 my-1">Sửa</button>
-                        <button type="button" class="btn btn-danger mx-1 my-1">Xóa</button>
-                    </td>
-                </tr>
+                {{else}}
+                <p>No employees to display</p>
+                {{/each}}
             </tbody>
         </table>
         <nav aria-label="Page navigation example">

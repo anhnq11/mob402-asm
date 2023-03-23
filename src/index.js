@@ -9,20 +9,33 @@ const cookieParser = require("cookie-parser");
 const myModule = require('./module');
 
 let user;
-let listUser
+let listUsers;
+let listProducts = [];
 let curUser;
 
-const writeListUser = function () {
-    let data = JSON.stringify(listUser);
-    fs.writeFileSync('listUser.json', data);
+const writelistUsers = function () {
+    let data = JSON.stringify(listUsers);
+    fs.writeFileSync('json/listUsers.json', data);
 }
 
-const readListUser = function () {
-    let data = fs.readFileSync('listUser.json');
-    listUser = JSON.parse(data);
+const readlistUsers = function () {
+    let data = fs.readFileSync('json/listUsers.json');
+    listUsers = JSON.parse(data);
 }
 
-readListUser();
+readlistUsers();
+
+const writelistProducts = function () {
+    let data = JSON.stringify(listProducts);
+    fs.writeFileSync('json/listProducts.json', data);
+}
+
+const readlistProducts = function () {
+    let data = fs.readFileSync('json/listProducts.json');
+    listProducts = JSON.parse(data);
+}
+
+readlistProducts();
 
 const port = 8080;
 const routes = require('./routes');
@@ -36,7 +49,10 @@ app.use(cookieParser());
 // app.use(morgan('combined'))
 
 app.engine('hbs', engine({
-    extname: '.hbs'
+    extname: '.hbs',
+    helpers: {
+        sum: (a, b) => a + b
+    }
 }));
 
 app.set('view engine', 'hbs');
@@ -50,30 +66,42 @@ app.get('/', (req, res) => {
     });
 });
 
+// Quản lý tài khoản
 app.get('/accounts', (req, res) => {
     res.render('accounts', {
         showHeader: true,
-        listUser
+        listUsers
     });
 });
 
 app.post('/accounts', (req, res) => {
     user = req.body;
-    let check = myModule.addUser(user, listUser, 'account');
+    let check = myModule.addUser(user, listUsers, 'account');
     if (check) {
-        listUser.push(user)
-        writeListUser();
+        listUsers.push(user)
+        writelistUsers();
         res.redirect('/accounts');
     }
 });
 
+// Quản lý sản phẩm
 app.get('/products', (req, res) => {
     res.render('products', {
         showHeader: true,
+        listProducts
     });
 });
 
-app.get('/typeofproducts', (req, res) => {
+app.post('/products', (req, res) => {
+    prod = req.body;
+    prod.author = curUser.fullname;
+    console.log(curUser);
+    listProducts.push(prod)
+    writelistProducts();
+    res.redirect('/products');
+});
+
+app.get('/typeofprods', (req, res) => {
     res.render('typeofprods', {
         showHeader: true,
     });
@@ -102,13 +130,13 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
     user = req.body;
     let check = false;
-    for (let i = 0; i < listUser.length; i++) {
-        if (listUser[i].username == user.username && listUser[i].password == user.password) {
+    for (let i = 0; i < listUsers.length; i++) {
+        if (listUsers[i].username == user.username && listUsers[i].password == user.password) {
             check = true;
-            curUser = listUser[i];
+            curUser = listUsers[i];
         }
     }
-    listUser.forEach(element => {
+    listUsers.forEach(element => {
         if (user.username === element.username && user.password === element.password) {
             check = true;
         }
@@ -134,10 +162,10 @@ app.get('/signin', (req, res) => {
 
 app.post('/signin', (req, res) => {
     user = req.body;
-    let check = myModule.addUser(user, listUser);
+    let check = myModule.addUser(user, listUsers);
     if (check) {
-        listUser.push(user)
-        writeListUser();
+        listUsers.push(user)
+        writelistUsers();
         res.redirect('/login');
     }
 });

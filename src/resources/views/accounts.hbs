@@ -76,9 +76,9 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each listUser}}
+                {{#each listUsers}}
                 <tr>
-                    <th class="text-center align-middle" scope="row">1</th>
+                    <th class="text-center align-middle" scope="row">{{sum @index 1}}</th>
                     <td class="text-center align-middle">{{fullname}}</td>
                     <td class="text-center align-middle">{{username}}</td>
                     <td class="text-center align-middle">{{email}}</td>

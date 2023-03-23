@@ -29,5 +29,12 @@
         "email": "caocuong@gmail.com",
         "password": "123",
         "acctype": "User"
+    },
+    {
+        "fullname": "Nguyễn Huy",
+        "username": "huynv1",
+        "email": "anhnq@gmail.com",
+        "password": "123",
+        "acctype": "Admin"
     }
 ]
