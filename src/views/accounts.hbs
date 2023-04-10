@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Thêm người dùng mới</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm người dùng</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/accounts">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="fullname" placeholder="FullName"
+                                    name="fullname" required>
+                                <label for="fullname">FullName</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="username" placeholder="UserName"
+                                    name="username" required>
+                                <label for="username">UserName</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    placeholder="name@example.com">
+                                <label for="email" required>Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password">
+                                <label for="password" required>Password</label>
+                            </div>
+                            <div class="form-floating">
+                                <select class="form-select" id="floatingSelect" name="role"
+                                    aria-label="Floating label select example">
+                                    <option selected>Loại tài khoản</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
+                                </select>
+                                <label for="floatingSelect">Loại tài khoản</label>
+                            </div>
+                            <div class="modal-footer mt-3">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col justify-content-between">
+            <form class="d-flex" role="search" method="get" action="/accounts">
+                <select class="form-select" name="userRole" aria-label="Default select example">
+                    <option selected value="all">Tất cả tài khoản</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
+                <button type="submit" class="btn btn-primary mx-2">Lọc</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table caption-top table-bordered">
+            <caption class="fw-semibold">Danh sách tài khoản</caption>
+            {{#if msg}}
+            <div class="p-1 mb-2 bg-warning text-dark rounded">
+                <p class="fw-bold mx-3 mb-0">{{msg}}</p>
+            </div>
+            {{/if}}
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center align-middle" scope="col">#</th>
+                    <th class="text-center align-middle" scope="col">Full Name</th>
+                    <th class="text-center align-middle" scope="col">User Name</th>
+                    <th class="text-center align-middle" scope="col">Email</th>
+                    <th class="text-center align-middle" scope="col">Quyền</th>
+                    <th class="text-center align-middle" scope="col">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each accArrs}}
+                <tr>
+                    <th class="text-center align-middle" scope="row">{{sum @index 1}}</th>
+                    <td class="text-center align-middle">{{fullname}}</td>
+                    <td class="text-center align-middle">{{username}}</td>
+                    <td class="text-center align-middle">{{email}}</td>
+                    <td class="text-center align-middle">{{role}}</td>
+                    <td class="text-center align-middle">
+                        {{!-- <a href="/accounts/update/{{this._id}}" class="btn btn-primary btn-sm">Sửa</a> --}}
+                        <a href="/accounts/delete/{{this._id}}" onclick="return confirm('Are you sure?')"
+                            class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+                {{else}}
+                <p>No employees to display</p>
+                {{/each}}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

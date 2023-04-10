@@ -1,10 +1,15 @@
-const router = require('./main');
+var express = require('express');
+var router = express.Router();
+const indexCtrl = require('../controllers/indexCtrl');
 
+router.get('/login', indexCtrl.toLogin);
+router.post('/login', indexCtrl.login);
 
-function routes(app) {
+router.get('/signin', indexCtrl.signin);
+router.post('/signin', indexCtrl.reg);
 
-    app.use('/', router);
+router.get('/userInfo', indexCtrl.userInfo);
 
-}
+router.get('/', indexCtrl.index);
 
-module.exports = routes;
+module.exports = router;

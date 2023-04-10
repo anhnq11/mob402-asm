@@ -1,0 +1,38 @@
+<h1 class="modal-title fs-5 my-3" id="exampleModalLabel">Chỉnh sửa sản phẩm</h1>
+<div class="modal-body">
+    <form method="post" action="/products/products/update/{{edtPrd._id}}">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" value="{{edtPrd.tensp}}" id="tensp" name="tensp"
+                placeholder="FullName">
+            <label for="floatingInput">Tên sản phẩm</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" value="{{edtPrd.giaban}}" id="giaban" name="giaban"
+                placeholder="UserName">
+            <label for="floatingInput">Giá bán</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-select" id="lsp" name="lsp" aria-label="Floating label select example">
+                <option selected value="{{edtPrd.lsp}}">{{edtPrd.lsp}}</option>
+                {{#each listCats}}
+                <option value="{{tenloai}}">{{tenloai}}</option>
+                {{/each}}
+            </select>
+            <label for="floatingSelect">Loại sản phẩm</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" value="" placeholder="Leave a comment here" id="motasp" name="motasp"
+                style="height: 100px">{{edtPrd.motasp}}</textarea>
+            <label for="floatingTextarea2">Mô tả</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" value="{{edtPrd.soluong}}" class="form-control" id="soluong" name="soluong"
+                placeholder="UserName">
+            <label for="floatingInput">Số lượng</label>
+        </div>
+        <div class="modal-footer mb-3">
+            <a href="/products/products" class="btn btn-primary mx-2">Back</a>
+            <button type="submit" class="btn btn-primary">Sửa</button>
+        </div>
+    </form>
+</div>

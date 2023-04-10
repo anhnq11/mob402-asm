@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Thêm sản phẩm mới</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm sản phẩm</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/products/products">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="tensp" name="tensp" placeholder="FullName">
+                                <label for="floatingInput">Tên sản phẩm</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="giaban" name="giaban"
+                                    placeholder="UserName">
+                                <label for="floatingInput">Giá bán</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="lsp" name="lsp"
+                                    aria-label="Floating label select example">
+                                    <option selected>Loại sản phẩm</option>
+                                    {{#each listCats}}
+                                    <option value="{{tenloai}}">{{tenloai}}</option>
+                                    {{/each}}
+                                </select>
+                                <label for="floatingSelect">Loại sản phẩm</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="motasp"
+                                    name="motasp" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Mô tả</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="soluong" name="soluong"
+                                    placeholder="UserName">
+                                <label for="floatingInput">Số lượng</label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col justify-content-between">
+            <form class="d-flex" role="search" method="get" action="/products/products">
+                <select class="form-select" name="loaisp" aria-label="Default select example">
+                    <option selected value="all">Tất cả sản phẩm</option>
+                    {{#each listCats}}
+                    <option value="{{tenloai}}">{{tenloai}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit" class="btn btn-primary mx-2">Lọc</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table caption-top table-bordered">
+            <caption class="fw-semibold">Danh sách Sản phẩm</caption>
+            <thead class="table-dark">
+                <tr class="col text-center">
+                    <th class="text-center align-middle col" scope="col">#</th>
+                    <th class="text-center align-middle col" scope="col-3">Tên sản phẩm</th>
+                    <th class="text-center align-middle col" scope="col-3">Mã sản phẩm</th>
+                    <th class="text-center align-middle col" scope="col">Giá bán</th>
+                    <th class="text-center align-middle col" scope="col">Thể loại</th>
+                    <th class="text-center align-middle col-3" scope="col">Mô tả</th>
+                    <th class="text-center align-middle col" scope="col">Người tạo</th>
+                    <th class="text-center align-middle col" scope="col">Số lượng</th>
+                    <th class="text-center align-middle col" scope="col">Đã bán</th>
+                    <th class="text-center align-middle col" scope="col">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each listPrd}}
+                <tr>
+                    <th class="text-center align-middle" scope="row">{{sum @index 1}}</th>
+                    <td class="text-center align-middle">{{tensp}}</td>
+                    <td class="text-center align-middle">SP 1</td>
+                    <td class="text-center align-middle">{{giaban}} VNĐ</td>
+                    <td class="text-center align-middle">{{lsp}}</td>
+                    <td class=" align-middle">{{motasp}}</td>
+                    <td class="text-center align-middle">{{author}}</td>
+                    <td class="text-center align-middle">{{soluong}}</td>
+                    <td class="text-center align-middle">0</td>
+                    <td class="text-center align-middle">
+                        <a href="/products/products/update/{{this._id}}" class="btn btn-primary btn-sm">Sửa</a>
+                        <a href="/products/products/delete/{{this._id}}" onclick="return confirm('Are you sure?')"
+                            class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+                {{else}}
+                <p>No employees to display</p>
+                {{/each}}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

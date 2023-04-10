@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">Thêm loại</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        {{#if catObj}}
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa loại sản phẩm</h1>
+                        {{else}}
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm loại sản phẩm</h1>
+                        {{/if}}
+                        <a href="/products/categories" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/products/categories">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="tenloai" value="{{catObj.tenloai}}"
+                                    id="tenloai" placeholder="FullName">
+                                <label for="tenloai">Tên loại</label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                {{#if catObj}}
+                                <button type="submit" class="btn btn-primary">Sửa</button>
+                                {{else}}
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                                {{/if}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col justify-content-between">
+            <form class="d-flex" role="search" method="get" action="/products/categories">
+                <select class="form-select" name="loaisp" aria-label="Default select example">
+                    <option selected value="all">Loại sản phẩm</option>
+                    {{#each catsArrs}}
+                    <option value="{{this._id}}">{{tenloai}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit" class="btn btn-primary mx-2">Lọc</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table caption-top table-bordered">
+            <caption class="fw-semibold">Danh sách Thể loại</caption>
+            <thead class="table-dark">
+                <tr class="col text-center">
+                    <th class="text-center align-middle col" scope="col">#</th>
+                    <th class="text-center align-middle col" scope="col-3">Tên thể loại</th>
+                    <th class="text-center align-middle col" scope="col">Số lượng SP</th>
+                    <th class="text-center align-middle col" scope="col">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each catsList}}
+                <tr>
+                    <th class="text-center align-middle" scope="row">{{sum @index 1}}</th>
+                    <td class="text-center align-middle">{{tenloai}}</td>
+                    <td class="text-center align-middle">00</td>
+                    <td class="text-center align-middle">
+                        <a href="/products/categories/update/{{this._id}}" class="btn btn-primary btn-sm">Sửa</a>
+                        <a href="/products/categories/delete/{{this._id}}" onclick="return confirm('Are you sure?')"
+                            class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+                {{else}}
+                <p>No employees to display</p>
+                {{!-- Thêm chức năng sửa --}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
